@@ -1,0 +1,33 @@
+body {
+    background-color: rgba(252, 186, 125, 125);
+    color: #5A4636;
+    font-family: Impact;
+}
+
+h1, h2, h3 {
+    color: rgb(244, 228, 193);
+}
+
+#conditions {
+    color: LightGoldenRodYellow;
+}
+
+.centered {
+    text-align: center;
+}
+
+ul li {
+    color: green;
+}
+
+* {/*all elements*/
+    margin: 0;
+}
+
+button:hover {
+    background-color: #D95D00
+}
+
+input[type="text"] {
+    background-color: LightGoldenRodYellow;
+}

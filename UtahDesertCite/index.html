@@ -1,0 +1,83 @@
+<!--The first/home page file must be named "index.html"-->
+<!DOCTYPE html><!--Specifies HTML, in this case 5 can specify earlier versions-->
+<html lang="en">
+    <head> <!--meta data about the pageI that is not displayed in the page-->
+        <meta charset="UTF-8">
+        <meta name="keywords" content="Utah, desert, animals, flowers">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Title</title> <!--The title of the page in the browser tab-->
+        <link rel="stylesheet" href="styles/indexStyle.css">
+        <script src="scripts/indexScript.js"></script>
+<!--can just write a script right here
+        <script>
+            alert('Hello')
+        </script>-->
+    </head>
+
+    <body id="pageBody"><!--USed for website content, can have only one body, it won't work with multiples and there is no reason for it-->
+        <!--Use as titles only, if you want bigger than paragraph text, use stylesheets-->
+        <h1 class="centered">Utah Desert Flowers</h1><!--Level one heading, header one, purpose: big text-->
+
+        <img >
+
+        <br>
+        <!--can just place a script anywhere in the body
+        <script>
+            alert('Hello')
+        </script>-->
+        <p>
+            Words, WOrds, WOrds, WOrds, Words, More wordsWe still wods, words, dkaslfdj, aksjdfljhhgklfsda,<br>
+            kkdjasklfnkjdshgkj, kdhjfhkasdhjk
+            kkldshadjalkjdfklsjafhkljahsdlkfjkldsjfjkdsjlvabiwqh[ihiudahihaslnkggoiajlkuf
+            ddhfiajuaoqskljfalfjjfpqjda
+            Ther are more text.
+        </p>
+
+        <h2 class="centered">&#9880; or &#127804; Utah Desert Flowers</h2><!--Level two, header two, purpose: slightly smaller text section--><!--There are six total-->
+        <ul><!--unordered list uses bulletpoints not numbers or anything like that-->
+            <li>State Flower</li><!--conaints list items-->
+            <li>pear cactus</li>
+            <li>sunflower</li>
+        </ul>
+        <a href="https://www.visitutah.com/things-to-do/wildflowers" target="_blank">More Flowers</a><!--href defines the link for a link to link to, it can be another website, it can be another file on your own site, or another location on the same page--><!--when linking to another website is common pratice to open in a new tab-->
+
+        <h2 class="centered">Animals</h2>
+        <ol><!--ordered list uses numbers to display an "order"-->
+            <li>Rabbit</li><!--also contains list items-->
+            <li>RattleSnake</li>
+            <li>Sheep</li>
+        </ol>
+
+        <a>MOre Animalas</a><!--anchor tag, for links-->
+
+        <form><!--forms-->
+            <label for="customerName">Customer Name: </label>
+            <input type="text" id="customerName">
+            <br>
+
+            <label for="North">North</label><!--labels will label an input use for and id to link them-->
+            <input type="radio" id="North" name="region" value="north"><!--type specifies the type like check box or password, name in this case groups the radio buttons so only one of each name is on at a time, a value is a value--> <!--The Id is also just generally an identifier for finding a specific element-->
+            <br>
+
+            <label for="East">East</label>
+            <input type="radio" id="East" name="region" value="east">
+            <br>
+
+            <label for="South">South</label>
+            <input type="radio" id="South" name="region" value="south">
+            <br>
+
+            <label for="West">West</label>
+            <input type="radio" id="West" name="region" value="west">
+            <br>
+        </form>
+
+        <h2 class="centered">Additional Site Features</h2>
+        <h3>Request Info</h3>
+        <h3 class="centered">Try it Out</h3>
+            <button onclick="makeRain()">Make it rain</button> <!--button but unexplained-->
+            <p>&copy; Copyright 2025 Noah C. Chisholm. All rights reserved.</p><!--can make symbols like the copyright symbol, use the '&' followed by the code or name and then a ';' semi-colon to terminate it-->
+        <p id="conditions">Current Conditions</p>
+        <!--can just place a script anywhere in the body-->
+    </body>
+</html>

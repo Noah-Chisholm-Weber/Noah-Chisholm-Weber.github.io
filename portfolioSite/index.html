@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="styleSheetLink" rel="stylesheet" href="darkModeStyle.css">
+    <script src="indexScript.js"></script>
+</head>
+
+<body id="body">
+    <h1>Noah Chisholm's Java Script Portfolio</h1> <!--site title-->
+
+    <img src="selfImg.jpg" width="300" height="400">
+
+    <!--introductory paragraph-->
+    <p>
+        Hello! I am Noah Chisholm. I as of Jan 14, 2025 am a current student of Weber State University. I am
+        majoring in computer science and am quite excited for my WEB 1430 course. While not an expert in
+        programming I have been writing various things for most of my childhood and have very much enjoyed
+        myself. My goto language to use is C++ and I have used this with Unreal Engine Blueprints to create
+        various video games, no finished projects, but I have also taken a course on java, and some introduction
+        to risc-V assembly and by the end of Spring semester 2025 I will have learnt of prolog, java script, css,
+        and html. This site is to display my upcoming java script demonstrations.
+    </p>
+
+    <h2>Java Script Demonstrations</h2>
+    <ol>
+        <li> <a href="..\helloWorldHtml\index.html">Hello World HTML Only</a> </li>
+        <li> <a href="..\UtahDesertCite\index.html">Utah Desert Site HTML Review</a> </li>
+    </ol>
+
+    <br>
+
+    <h3>Settings</h3>
+    <form>
+        <label for="lightModeButton">Light Mode</label>
+        <input name="styleButtons" type="radio" id="lightModeButton" onclick="setLightMode()">
+
+        <label for="darkModeButton">Dark Mode</label>
+        <input name="styleButtons" type="radio" id="darkModeButton" onclick="setDarkMode()" checked>
+
+        <label for="fontSlider">Font Size: </label>
+        <label id="fontOut">12</label>
+        <input name="fontSlider" type="range" id="fontSlider" onChange="adjustFont()" oninput="updateFontText()" value="12" min="12" max="96">
+        <label id="fontExample">Sample Text.</label>
+    </form>
+</body>
+
+</html>
