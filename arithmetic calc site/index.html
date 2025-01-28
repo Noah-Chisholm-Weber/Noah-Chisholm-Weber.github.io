@@ -200,27 +200,56 @@
 			
 			// Math object			
 			function pi() {
+				let result = Math.PI;
 				document.getElementById('mathResult').innerHTML = result;
 			}
+
+			//console.log(2**6) //raise 2 to the power of 6
 			
 			function sine() {
 				let op = parseFloat(document.getElementById('mathOp').value);
 				// TODO: Sine
-				
+				let result = Math.sin(op);
 				document.getElementById('mathResult').innerHTML = result;
 			}
 			
 			function squareRoot() {
 				let op = parseFloat(document.getElementById('mathOp').value);
 				// TODO: Square root
-				
+				let result = Math.sqrt(op);
 				document.getElementById('mathResult').innerHTML = result;
 			}
 			
 			function random() {
-				// TODO: Random numbers
-								
-				document.getElementById('mathResult').innerHTML = result;
+			/*//option 1
+				for(let i = 0; i < 100; i++){
+					let result = Math.random(); //only generates between 0 and 1 and it is non-inclusive of 1 so 0.0 and 0.99999999999999999999999
+
+					//goal: rand int between 1 and 10
+
+					result *= 1000000000;
+					result %= 10;
+					result++;
+					result = Math.floor(result);
+					console.log(result);
+					document.getElementById('mathResult').innerHTML = result;
+				}*/
+				//option 2
+				/*for(let i = 0; i < 100; i++){
+					let result = parseInt(Math.random() * 10) + 1;
+					console.log(result);
+					document.getElementById('mathResult').innerHTML = result;
+				}*/
+				//other ranges
+
+				let minRange = -10;
+				let maxRange = 10;
+
+				for(let i = 0; i < 100; i++){
+					let result = parseInt(Math.random() * (maxRange - minRange + 1)) + minRange;
+					console.log(result);
+					document.getElementById('mathResult').innerHTML = result;
+				}
 			}			
 		</script>
 	</body>

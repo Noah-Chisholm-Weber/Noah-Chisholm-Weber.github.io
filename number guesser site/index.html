@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Number Guess</title>
+		<script>
+			//relational expressions, true or false
+			//operators: <, >, <=, >=, ==, !=, ===, !==
+			//===
+			/*
+				strict equality
+				in js there are more implicit conversions due to the loosly typed behavior. for instance int 5 is not equal to string 5 but == will return true, however === compares both type and value so that 5 is not equal to string 5
+
+				let x = 5;
+				let y = "5";
+				console.log(x === y);
+			*/
+			//!==
+			/*
+				strict inequality
+				seems to be the same as === but not
+			*/
+			//logical operators: &&, ||, !
+
+			let number;
+			let score = 0;
+			let tries = 0;
+
+			function getNewNumber() {
+				let minRange = 1;
+				let maxRange = 100;
+				number = parseInt(Math.random() * maxRange - minRange + 1) + minRange;
+			}
+
+			let cheat = false;
+			function toggleCheat()
+			{
+				cheat = !cheat;
+				if(cheat){
+					document.getElementById("cheat").innerHTML = number;
+				} else {
+					document.getElementById("showHint").innerHTML = "New number generated!"
+					getNewNumber();
+					document.getElementById("cheat").innerHTML = "?";
+				}
+			}
+
+			function displayHints()
+			{
+				tries++;
+				document.getElementById("attempts").innerHTML = tries;
+				let num = parseInt(document.getElementById("userInput"));
+				if(num < number){
+					document.getElementById("showHint").innerHTML = "The number is greater than that!";
+				} else if (num > number) {
+					document.getElementById("showHint").innerHTML = "The number is less  than that!";
+				} else {
+					document.getElementById("showHint").innerHTML = "Solved, generating a new number";
+					score++;
+					ties = 0;
+					document.getElementById("attempts").innerHTML = tries;
+					document.getElementById("points").innerHTML = score;
+				}
+			}
+		</script>
+	</head>
+	<body onload="getNewNumber()">
+		<h1>Number Guess</h1>
+
+		<p>I am thinking of a number between 1 and 100.<br>
+		Try and guess it.</p>
+
+		<p>Hints:
+			<span id="showHint">Type a number and press enter.</span></p>
+
+		<p>Score: <span id="points">0</span></p>
+		<p>Attempts: <span id="attempts">0</span></p>
+
+		<form onsubmit="displayHints(); return false;">
+			What is your guess:
+			<input id="userInput" type="text" autofocus>
+		</form>
+
+		<input id="cheatbox" type="checkbox" onclick="toggleCheat()">
+		<label>Cheat: <span id="cheat">?</span></label>
+	</body>
+</html>
