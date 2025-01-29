@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="styleSheetLink" rel="stylesheet" href="darkModeStyle.css">
+    <script src="indexScript.js"></script>
+</head>
+
+<body id="body">
+    <h1>Properties of Shapes Calculator</h1>
+
+    <img id="mainImg">
+
+    <form id="inputForm">
+        <label for="dimensions">Select Dimension Count: </label>
+        <select id="dimensions" name="dimensions" onchange="dimensionSelected()">
+            <option value="">Select One</option>
+            <option value="2d">2d</option>
+            <option value="3d">3d</option>
+        </select>
+
+        <br>
+
+        <label for="calculations">Select Calculation: </label>
+        <select id="calculations" name="calculations" onchange="calculationSelected()">
+            <option value="">Select One</option>
+        </select>
+    </form>
+</body>
