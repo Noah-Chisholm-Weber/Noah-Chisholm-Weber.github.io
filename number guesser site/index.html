@@ -48,18 +48,24 @@
 			{
 				tries++;
 				document.getElementById("attempts").innerHTML = tries;
-				let num = parseInt(document.getElementById("userInput"));
+				let num = parseInt(document.getElementById("userInput").value);
 				if(num < number){
 					document.getElementById("showHint").innerHTML = "The number is greater than that!";
 				} else if (num > number) {
 					document.getElementById("showHint").innerHTML = "The number is less  than that!";
-				} else {
+				} else if(num == number) {
+					if(cheat  == false){
+						score++;
+					} else {
+						toggleCheat();
+						document.getElementById("cheatbox").checked = false;
+					}
 					document.getElementById("showHint").innerHTML = "Solved, generating a new number";
-					score++;
-					ties = 0;
+					tries = 0;
 					document.getElementById("attempts").innerHTML = tries;
 					document.getElementById("points").innerHTML = score;
-				}
+					document.getElementById("userInput").value = "";
+				} else document.getElementById("showHint").innerHTML = "Invalid input!";
 			}
 		</script>
 	</head>

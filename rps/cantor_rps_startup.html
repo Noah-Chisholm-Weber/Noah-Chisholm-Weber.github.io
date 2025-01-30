@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+</html>
+	<head lang="en-US">
+		<meta charset="UTF-8">
+		<title>RPS with Switch</title>
+		
+		<style>
+			button, p {
+				font-size: xx-large;
+			}
+		</style>
+		
+		<script>
+			function play(x) {
+				// TODO: Switch with cantor pairing function to determine outcome
+
+				let output;
+				output = "You choose " + evaluate(x) + ".";
+
+				let computer;
+				 computer = Math.floor(Math.random() * 3);
+
+				output += "<br>I choose " + evaluate(computer) + ".";
+
+				let winResult = /*(x**2 + x + 2*computer*x +3*computer + computer**2) / 2 */ (((x+computer) * (x + computer + 1))/2) + computer;//expanded form verse not.
+
+				switch(winResult) {
+					case 5:
+					case 1:
+					case 7:
+						output += "<br>You Win!";
+						break;
+					case 2:
+					case 8:
+					case 3:
+						output += "<br>You Lose.";
+						break;
+					default:
+						output += "<br>You tied.";
+				}
+
+				document.getElementById("outcome").innerHTML = output;
+			}
+			
+			function evaluate(value) {
+				// TODO: Switch to determine rock, paper, scissors
+				let output;
+				switch(value) {
+					case 0:
+						output = "rock";
+						break;
+					case 1:
+						output = "paper";
+						break;
+					case 2:
+						output = "scissors";
+						break;
+					default:
+						output = "invalid";
+						break;
+				}
+				return output;
+			}
+		</script>		
+	</head>
+	<body>
+		<h1>Let's Play Rock, Paper, Scissors</h1>
+		<button onclick='play(0)'>&#129704;</button>
+		<button onclick='play(1)'>&#x1F4C3;</button>
+		<button onclick='play(2)'>&#9984;</button>
+		<p id='outcome'></p>
+	</body>
+</html>
+
+<!-- 
+Rock crushes scissors
+Paper covers rock
+Scissors cuts paper
+
+rock = 0
+paper = 1
+scissors = 2
+
+Cantor Pairing Function Results Table
+Player	Comp.	Output
+0		0		0
+0		1		2
+0		2		5
+1		0		1
+1		1		4
+1		2		8
+2		0		3
+2		1		7
+2		2		12
+-->
