@@ -434,7 +434,49 @@ class moveableButton {
                         }
                         break;
                 }
-                if(clubs == 12 && hearts == 12 && spades == 12 && diamonds == 12){
+                let countClubs = 0;
+                let curChild = document.getElementById("club");
+                while(curChild){
+                    countClubs++;
+                    curChild = curChild.querySelector("div");
+                    if(curChild){
+                        curChild = curChild.querySelector("div");
+                    }
+                }
+
+                let countHearts = 0;
+                curChild = let curChild = document.getElementById("heart");
+                while(curChild){
+                    countHearts++;
+                    prevChild = curChild
+                    curChild = curChild.querySelector("div");
+                    if(curChild){
+                        curChild = curChild.querySelector("div");
+                    }
+                }
+
+                let countSpades = 0;
+                curChild = let curChild = document.getElementById("spade");
+                while(curChild){
+                    countSpades++;
+                    prevChild = curChild
+                    curChild = curChild.querySelector("div");
+                    if(curChild){
+                        curChild = curChild.querySelector("div");
+                    }
+                }
+
+                let countDiamonds = 0;
+                curChild = let curChild = document.getElementById("diamond");
+                while(curChild){
+                    countDiamonds++;
+                    prevChild = curChild
+                    curChild = curChild.querySelector("div");
+                    if(curChild){
+                        curChild = curChild.querySelector("div");
+                    }
+                }
+                if(countClubs == 12 && countHearts == 12 && countSpades == 12 && countDiamonds == 12){
                     gameWon = true;
                     return true
                 } else {

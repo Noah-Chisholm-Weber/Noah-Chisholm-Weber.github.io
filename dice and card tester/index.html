@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head lang="en-US">
+	<meta charset="UTF-8">
+		<title>Dice and Card Tester</title>
+		
+		<style>
+			.dice {
+				font-size: xxx-large;
+			}
+			
+			.card {
+				font-size: 100px;
+			}
+		</style>
+		
+		<script>
+			// while demo
+			function verifyAge() {
+				let age = parseInt(prompt("What is your age?"));
+				while(Number.isNaN(age) || age < 21) {
+					alert("Too Young");
+					age = parseInt(prompt("What is your age?"));
+				}
+				document.getElementById("ageButton").disabled = true;
+				document.getElementById("diceButton").disabled = false;
+				document.getElementById("cardButton").disabled = false;
+			}
+		
+			// do-while demo
+			function diceRoll() {
+				let result1;
+				let result2;
+				let goal = parseInt(document.getElementById("diceOutcome").value);
+				let out = "<p>";
+				if(Number.isNaN(goal) || goal < 2 || goal > 12) {
+					out = "Invalid input!</p>";
+					document.getElementById("diceOutput").innerHTML = out;
+					return;
+				}
+				
+				let count = 0;
+				do{
+					count++;
+					result1 = parseInt(Math.random() * 6) + 1;
+					result2 = parseInt(Math.random() * 6) + 1;
+					out += count + ".) " + result1 + ", " + result2 + "<br>";
+					if(count >= 1000) break;
+				} while(result1 + result2 != goal);
+				
+				out += "It took " + count + " rolls to find your number!</p>";
+				document.getElementById("diceOutput").innerHTML = out;
+			}
+			
+			// Spades   (127137)
+			// Hearts   (127153)
+			// Diamonds (127169)
+			// Clubs    (127185)
+			
+			function revealCards() {
+				// TODO: Reveal cards with for loop
+				// TODO: Skip knight with continue
+				let output = "<p>";
+				let start = 127137;
+				for(let i = start; i < start + 14; i++) {
+					output += '&#' + i + ';';
+				}
+				document.getElementById("cardOutput").innerHTML = output + "</p>";
+			}		
+		</script>
+	</head>
+<html>
+	<body>
+		<h1>Dice and Card Tester</h1>
+		<p>Please verify your age to continue.</p>
+		
+		<button onclick='verifyAge()' id='ageButton'>Verify Age</button>
+	
+		<hr>
+	
+		<h2>Dice Tester</h2>
+		<label for='diceOutcome'>Desired Outcome (2-12): </label>
+		<input type='text' id='diceOutcome'>
+		
+		<button onclick='diceRoll()' disabled id='diceButton'>Roll the Dice</button>
+		<div id='diceOutput'></div>
+		
+		<hr>
+		
+		<h2>Card Tester</h2>
+		<button onclick='revealCards()' disabled id='cardButton'>Reveal Cards</button>
+		<div id='cardOutput'></div>
+		
+		<hr>		
+	</body>
+</html>
