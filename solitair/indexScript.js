@@ -74,6 +74,14 @@ let deck = [];
 for(let v = 0; v < 13; v++) {
     for(let s = 0; s < 4; s++){
         deck.push({value: v, suite: s});
+        /*let rand = Math.random();
+        if(rand< 0.3){
+            deck.push({value: 0, suite: 0});
+        } else if(rand < 0.6) {
+            deck.push({value: 1, suite: 0});
+        } else {
+            deck.push({value: 2, suite: 0});
+        }*/
     }
 }
 
@@ -120,7 +128,8 @@ class moveableButton {
             this.isRed = true;
         }
         this.container = document.createElement("div");
-        this.container.id = id.toString();
+        this.shouldDoubleClick = false;
+        this.container.id = "id-" + id;
         this.slot = document.createElement("div");
         this.slot.classList.add("cardLocation");
         this.slot.classList.add("cardSlot");
@@ -145,7 +154,7 @@ class moveableButton {
         tempImg.id = 'cardImg';
         this.button.appendChild(tempImg);
         this.button.classList.add("movableButton");
-        this.button.addEventListener("mousedown", () => this.buttonClicked());
+        this.button.addEventListener("mousedown", (event) => this.buttonClicked(event));
         document.addEventListener("mouseup", (event) => this.buttonReleased(event));
         this.container.style.position = "absolute";
         this.container.style.left = "125px"; // Default position
@@ -207,24 +216,65 @@ class moveableButton {
         }
     }
 
-    buttonClicked() {
-        this.canMove = true;
-        this.origin = {
-            x: parseInt(this.container.style.left),
-            y: parseInt(this.container.style.top),
-            parent: null
+    buttonClicked(event) {
+        if(this.shouldDoubleClick){
+            let prevChild;
+            let curChild;
+            switch(this.suite){
+                case 0:
+                    curChild = document.getElementById("diamond");
+                    break;
+                case 1:
+                    curChild = document.getElementById("club");
+                    break;
+                case 2:
+                    curChild = document.getElementById("heart");
+                    break;
+                case 3:
+                    curChild = document.getElementById("spade");
+                    break;
+            }
+            while(curChild){
+                console.log(curChild);
+                prevChild = curChild;
+                curChild = curChild.querySelector("div");
+                console.log(curChild);
+                if(curChild) curChild = curChild.querySelector("div");
+            }
+            console.log(prevChild);
+            if(prevChild && this.canAttachToTarget(prevChild)){
+                this.attachToTarget(prevChild);
+                if(this.origin.parent && this.origin.parent.classList.contains("cardSlot")){
+                    buttons.get(parseInt(this.origin.parent.parentNode.id.slice(3))).enableButton();
+                }
+            }
+        } else {
+            this.shouldDoubleClick = true;
+            setTimeout(() =>{this.shouldDoubleClick = false}, 250);
+            if(this.canMove) return;
+            this.canMove = true;
+            this.origin = {
+                x: parseInt(this.container.style.left),
+                y: parseInt(this.container.style.top),
+                parent: null
+            }
+            this.container.style.zIndex = curIndex++;
+            let parent = this.container.parentNode;
+            if(parent && parent.id != "body") {
+                this.origin.parent = parent;
+                parent.removeChild(this.container);
+                document.body.appendChild(this.container);
+            }
+            document.addEventListener("mousemove", this.moveHandler);
+            this.move(event);
         }
-        this.container.style.zIndex = curIndex++;
-        let parent = this.container.parentNode;
-        if(parent && parent.id != "body") {
-            this.origin.parent = parent;
-            parent.removeChild(this.container);
-            document.body.appendChild(this.container);
-        }
-        document.addEventListener("mousemove", this.moveHandler);
     }
 
     move(event) {
+        if(event.buttons != 1){
+            this.buttonReleased(event);
+            return;
+        }
         const x = Math.max(0, Math.min(window.innerWidth - this.container.offsetWidth, event.clientX - this.container.offsetWidth / 2));
         const y = Math.max(0, Math.min(window.innerHeight - this.container.offsetHeight, event.clientY - this.container.offsetHeight / 2));
 
@@ -395,7 +445,7 @@ class moveableButton {
             }
         } else {
             if(value == targetValue - 1){
-                if(buttons.get(parseInt(target.parentNode.id)).isRed == !this.isRed){
+                if(buttons.get(parseInt(target.parentNode.id.slice(3))).isRed == !this.isRed){
                     return true;
                 } else {
                     return false;
@@ -424,6 +474,7 @@ class moveableButton {
 
     buttonReleased(event) {
         if(!this.canMove) return;
+        //if(!document.elementFromPoint(event.clientX, event.clientY).closest(`#id-${this.id.toString()}`)) return;
         this.canMove = false;
         document.removeEventListener("mousemove", this.moveHandler);
         let temp = document.querySelectorAll(".cardSlot");
@@ -441,7 +492,7 @@ class moveableButton {
         if(target && this.canAttachToTarget(target)) {
             this.attachToTarget(target);
             if(this.origin.parent && this.origin.parent.classList.contains("cardSlot")){
-                buttons.get(parseInt(this.origin.parent.parentNode.id)).enableButton();
+                buttons.get(parseInt(this.origin.parent.parentNode.id.slice(3))).enableButton();
             }
         } else {
             this.container.style.left = this.origin.x + "px";
