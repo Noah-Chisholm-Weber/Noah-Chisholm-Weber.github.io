@@ -1,0 +1,99 @@
+.movableButton {
+    all: unset; /* Removes default button styles */
+    display: block;
+    width: 86px;  /* Explicitly set width */
+    height: 132px; /* Explicitly set height */
+    pointer-events: all;
+}
+
+button {
+    all:unset;
+}
+
+div, button {
+    width: 86px;
+    height: 132px;
+    outline: 1px solid black;
+}
+
+.cardImg {
+    width: 86px; /* 691 * 0.125 */
+    height: 132px; /* 1056 * 0.125 */
+    transform: none; /* Remove scale transform */
+}
+
+#cardLocationHolder{
+    display: flex; /* Enables horizontal alignment */
+    flex-direction: row; /* Ensures elements appear in a row */
+    gap: 25px; /* Adds spacing between elements */
+    justify-content: center; /* Centers elements horizontally */
+    align-items: left; /* Aligns elements vertically */
+    width: 100%; /* Ensures it spans across the page */
+    padding: 20px; /* Adds some space around */
+    outline: none; /* Keeps the debug outline */
+}
+
+.cardLocation {
+    outline: 3px dashed blue;
+    width: 86px;
+    height: 132px;
+    margin: 0px;
+    position: relative;
+}
+
+.cardSlot {
+    pointer-events: none; /* Prevents interaction */
+    background: transparent; /* Ensures no visible background */
+    outline: none; /* Removes any visible outline */
+    position: absolute;
+    left: 0px;
+    top: 25px;
+    margin: 0px;
+}
+
+#topBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    outline: none;
+}
+
+#topBarSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    gap: 25px;
+    width: 50%;
+    outline: none;
+}
+
+#diamond {
+    background-image: url("cardImgResources/diamonds.png");
+    background-size: cover; /* Ensures the image fills the div */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+}
+
+#heart {
+    background-image: url("cardImgResources/hearts.png");
+    background-size: cover; /* Ensures the image fills the div */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+}
+
+#spade {
+    background-image: url("cardImgResources/spades.png");
+    background-size: cover; /* Ensures the image fills the div */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+}
+
+#club {
+    background-image: url("cardImgResources/clubs.png");
+    background-size: cover; /* Ensures the image fills the div */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-position: center; /* Centers the image */
+}
