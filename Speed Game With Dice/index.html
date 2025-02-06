@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Speed with Dice</title>
+		<style>
+			.dice {
+				font-size: 100px;				
+			}
+		</style>
+		<script>
+			let tempArr = ['one','two','three'];
+			for(let entry of tempArr){
+				console.log(entry);
+			}
+			for(let entry in tempArr){
+				console.log(entry);
+			}
+			for(let entry in tempArr){
+				console.log(tempArr[entry]);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Speed with Dice</h1>
+		<div id='computerArea'></div>
+		<div id='discardArea'></div>
+		<button onclick="discard_pile = getRandomCard(); redraw();">New Card</button>
+		<div id='playerArea'></div>		
+		
+		<script>
+			// TODO: Define empty arrays for each hand
+			let discardPile;
+			let playerHand = [];
+			let computerHand = [];
+		
+			function getRandomCard() {
+				// 9856 = die 1
+				return 9856 + Math.floor(Math.random() * 6);
+			}
+		
+			function startup() {							
+				// TODO: Load hands with push
+				for(let i = 0; i < 5; i++){
+					playerHand.push(getRandomCard());
+					computerHand.push(getRandomCard());
+				}
+				discardPile = getRandomCard();
+				redraw();
+			}
+			
+			function redraw() {
+				renderPile(playerHand, 'playerArea', true);
+				renderPile(computerHand, 'computerArea');
+				renderPile([discardPile], 'discardArea');
+				
+				// TODO: Determine winner with length
+			}
+			
+			function renderPile(hand, renderArea, clickable=false) {
+			
+				let output = '<p>';
+			
+				for (let i = 0; i < hand.length; i++) {
+					output += '<span class="dice"';
+					
+					if (clickable) 
+						output += 'onclick="discard(' + i + ')"';
+					
+					output += '>&#' + hand[i] + ';</span>';
+				}
+				
+				output += '</p>';
+			
+				document.getElementById(renderArea).innerHTML = output;
+			}
+		
+			function discard(index) {
+				let dist = Math.abs(playerHand[index] - discardPile);
+				if(dist == 1 || dist == 5){
+					discardPile = playerHand.splice(index,1);
+					redraw();
+				}
+			}
+		
+			function computerPlay() {
+				for(let index in computerHand) {
+					console.log(index);
+					let dist = Math.abs(computerHand[index] - discardPile);
+					if(dist == 1 || dist == 5){
+						console.log('stuff happened');
+						computerDiscard(index);
+						break;
+					}
+				}
+			}		
+			
+			function computerDiscard(value) {
+				discardPile = computerHand.splice(value,1);
+				redraw();
+				// TODO: discard by value with includes, indexOf, splice				
+			}
+		
+			setInterval(computerPlay, 1000);
+			startup();
+		</script>
+	</body>
+</html>

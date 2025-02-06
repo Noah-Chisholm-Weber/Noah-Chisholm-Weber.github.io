@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="oldUser">
+	<input type="text" id="userNameSignIn" placeholder="Enter username">
+	<button id="login">Login</button>
+	<p id="loginOut"></p>
+</div>
+<button id="createNewUser" onclick="document.getElementById('newUser').style.display = 'block'; document.getElementById('oldUser').style.display = 'none'; document.getElementById('createNewUser').style.display = 'none'">Create New User</button>
+<div id="newUser" style="display: none;">
+	<input type="text" id="username" placeholder="Enter username">
+	<input type="number" id="age" placeholder="Enter age">
+	<button id="submit">Add User</button>
+	<p id="result"></p>
+</div>
+
+<script src="indexScript.js"></script>
+</body>
+</html>

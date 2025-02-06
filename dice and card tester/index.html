@@ -62,6 +62,7 @@
 				let output = "<p>";
 				let start = 127137;
 				for(let i = start; i < start + 14; i++) {
+					if(i==start+11) continue;
 					output += '&#' + i + ';';
 				}
 				document.getElementById("cardOutput").innerHTML = output + "</p>";
