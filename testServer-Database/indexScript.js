@@ -1,5 +1,5 @@
 async function insertUser(username, age) {
-    const response = await fetch("http://129.153.127.9/insertUser", {
+    const response = await fetch("https://testserverdatabase.duckdns.org/insertUser", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -13,7 +13,7 @@ async function insertUser(username, age) {
 }
 
 async function login(userName) {
-    const response = await fetch("http://129.153.127.9/login", {
+    const response = await fetch("https://testserverdatabase.duckdns.org/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
