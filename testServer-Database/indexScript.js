@@ -1,10 +1,10 @@
 async function insertUser(username, password) {
-    const response = await fetch("https://testserverdatabase.duckdns.org/insertCustomer", {
+    const response = await fetch("https://testserverdatabase.duckdns.org/createUser", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: new URLSearchParams({ username: username, password: password })
+        body: new URLSearchParams({ username: username, password: password, role: 'CUSTOMER' })
     });
 
     const result = await response.json();
@@ -22,6 +22,7 @@ async function login(userName, passWord) {
     });
     const result = await response.json();
     localStorage.setItem("jwtToken", result.JWT);
+    console.log(getJWTJson());
     document.getElementById("loginOut").innerText = result.message || result.error;
 }
 
