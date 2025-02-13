@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Minesweeper</title>
+		<style>
+			.square {
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				background-color: gray;
+				text-align: center;
+			}
+			
+			#gameplayArea {
+				display: inline-block;
+				background-color: lightgray;
+			}
+		</style>	
+	</head>
+	<body>
+		<h1>Minesweeper</h1>		
+		<div id='gameplayArea'></div>
+					
+		<script>
+			const mineMap = [];
+			const cols = 9;
+			const rows = 9;
+			const mines = 10;		
+			const flag = '&#128681;';
+			const bomb = '&#128163;';
+		
+			// TODO: Define traverseGrid with callback function
+					
+			function reloadMap() {
+				// TODO: Implement reload map function as 2D array demo
+				
+				// TODO: Implement buildTable as callback at the end of reloadMap();
+			}
+			
+			function process(event, row, col) {
+				let button = document.getElementById(row + "_" + col);
+				let current = Boolean(document.getElementById(row + "_" + col).innerHTML);
+			
+				// Right-click, add/remove flag
+				if (!button.disabled) {
+					if (event.button === 2) {
+						let output = '';
+						if (!current)
+							output = flag;
+						
+						button.innerHTML = output;
+						
+					// Left-click and not occupied
+					} else if (!current) {					
+						if (mineMap[row][col] == 'M') {
+							button.innerHTML = bomb;
+							gameOver();
+						}
+						else {
+							if (mineMap[row][col] == 0) {
+								clearArea(row, col);
+							}
+							else {
+								button.innerHTML = mineMap[row][col];
+								button.style.backgroundColor = 'lightgray';
+							}							
+						}
+						
+						button.disabled = true;
+					}
+				}
+			}
+			
+			function gameOver() {
+				// TODO: Traverse grid with anonymous callback function
+				for (let row = 0; row < rows; row++)
+					for (let col = 0; col < cols; col++) {
+						let button = document.getElementById(row + "_" + col);
+						if (mineMap[row][col] == 'M')
+							button.innerHTML = bomb;
+							
+						button.disabled = true;
+					}		
+			}
+			
+			// TODO: Implement traverseAdjacent with callback
+						
+			function clearArea(row, col) {
+				// TODO: Traverse adjacent with callback
+				for (let y = -1; y <= 1; y++) {
+					for (let x = -1; x <= 1; x++) {
+						if ((row + y >= 0 && row + y < rows) &&			// Row in bounds
+							(col + x >= 0 && col + x < cols)) {			// Col in bounds
+							innerClear(row + y, col + x);
+						}
+					}
+				}
+			}
+			
+			function innerClear(adjustedRow, adjustedCol) {
+				let button = document.getElementById(adjustedRow + "_" + adjustedCol);
+					
+					// If area not flagged
+					if (!Boolean(button.innerHTML)) {
+						// Underlying grid is 0, clear and keep traversing
+						if (mineMap[adjustedRow][adjustedCol] == 0) {
+							button.innerHTML = '';									
+							button.style.backgroundColor = 'lightgray';
+							mineMap[adjustedRow][adjustedCol] = '-';
+							clearArea(adjustedRow, adjustedCol);
+						}
+						// Underlying grid is non-0, but available, display contents
+						else if (!button.disabled) {									
+							button.style.backgroundColor = 'lightgray';
+							button.innerHTML = mineMap[adjustedRow][adjustedCol];
+						}
+						button.disabled = true;
+					}
+			}
+			
+			function calculateValue(row, col) {				
+				let touchCount = 0;
+				
+				// TODO: Traverse adjacent with anonymous callback
+				for (let y = -1; y <= 1; y++) {
+					for (let x = -1; x <= 1; x++) {
+						if ((row + y >= 0 && row + y < rows) &&				// Row in bounds
+							(col + x >= 0 && col + x < cols)) {	 			// Col in bounds
+								if (mineMap[row + y][col + x] === 'M') 		// Mine detected
+									touchCount++;
+						}
+					}
+				}
+
+				return touchCount;
+			}
+			
+			let buildTable = () => {
+				output = "<table>"
+			
+				for (let row = 0; row < rows; row++) {
+					output += "<tr>";
+					for (let col = 0; col < cols; col++) {
+						output += "<td>" + 
+						"<div class='square' id='" + row + "_" + col + "'" + 
+						" onclick='process(event, " + row + ", " + col + ")'" +
+						" oncontextmenu='process(event, " + row + ", " + col + 
+						"); return false;'>" +
+						"</div></td>";
+					}
+					output += "</tr>";
+				}
+				
+				document.getElementById('gameplayArea').innerHTML = output;
+			}
+			
+			for (let i = 0; i < mineMap.length; i++)
+				console.log(mineMap[i]);
+				
+			reloadMap();			
+		</script>	
+	</body>
+</html>

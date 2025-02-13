@@ -445,10 +445,9 @@ class moveableButton {
                 }
 
                 let countHearts = 0;
-                curChild = let curChild = document.getElementById("heart");
+                curChild = document.getElementById("heart");
                 while(curChild){
                     countHearts++;
-                    prevChild = curChild
                     curChild = curChild.querySelector("div");
                     if(curChild){
                         curChild = curChild.querySelector("div");
@@ -456,10 +455,9 @@ class moveableButton {
                 }
 
                 let countSpades = 0;
-                curChild = let curChild = document.getElementById("spade");
+                curChild = document.getElementById("spade");
                 while(curChild){
                     countSpades++;
-                    prevChild = curChild
                     curChild = curChild.querySelector("div");
                     if(curChild){
                         curChild = curChild.querySelector("div");
@@ -467,16 +465,15 @@ class moveableButton {
                 }
 
                 let countDiamonds = 0;
-                curChild = let curChild = document.getElementById("diamond");
+                curChild = document.getElementById("diamond");
                 while(curChild){
                     countDiamonds++;
-                    prevChild = curChild
                     curChild = curChild.querySelector("div");
                     if(curChild){
                         curChild = curChild.querySelector("div");
                     }
                 }
-                if(countClubs == 12 && countHearts == 12 && countSpades == 12 && countDiamonds == 12){
+                if(countClubs == 13 && countHearts == 13 && countSpades == 13 && countDiamonds == 13){
                     gameWon = true;
                     return true
                 } else {

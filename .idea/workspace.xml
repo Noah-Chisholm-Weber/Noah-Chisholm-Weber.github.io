@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="490cd8ff-ee44-4900-9a92-66e6699428eb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arithmetic calc site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/arithmetic calc site/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolioSite/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolioSite/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solitair/indexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/solitair/indexScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/indexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/indexScript.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

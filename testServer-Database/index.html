@@ -6,14 +6,16 @@
 </head>
 <body>
 <div id="oldUser">
-	<input type="text" id="userNameSignIn" placeholder="Enter username">
+	<input type="text" id="userNameSignIn" placeholder="Enter Username">
+	<input type="password" id="passwordSignIn" placeholder="Enter Password">
 	<button id="login">Login</button>
 	<p id="loginOut"></p>
+	<button id="createNewCustomer" onclick="switchToCreateNewCustomer()">Create New User</button>
 </div>
-<button id="createNewUser" onclick="document.getElementById('newUser').style.display = 'block'; document.getElementById('oldUser').style.display = 'none'; document.getElementById('createNewUser').style.display = 'none'">Create New User</button>
 <div id="newUser" style="display: none;">
 	<input type="text" id="username" placeholder="Enter username">
-	<input type="number" id="age" placeholder="Enter age">
+	<input type="password" id="password" placeholder="Enter password">
+	<input type="password" id="passwordAgain" placeholder="Enter password again to confirm">
 	<button id="submit">Add User</button>
 	<p id="result"></p>
 </div>
