@@ -4,7 +4,7 @@ function getJWTJson(token) {
 
 function logout() {
     localStorage.removeItem("jwtToken");
-    window.location.href = "/login.html";  // Redirect to login
+    window.location.href = "index.html";  // Redirect to login
 }
 
 function isTokenExpired(token) {
@@ -14,10 +14,17 @@ function isTokenExpired(token) {
 
 function checkTokenExpiration() {
     const token = localStorage.getItem("jwtToken");
-    
+    console.log("checking expiration")
     if (!token || isTokenExpired(token)) {
         alert("Session expired. Please log in again.");
         logout(); // Log out and redirect
+    }
+}
+
+function verifyPermissions(permission) {
+    console.log("checking perms");
+    if(getJWTJson(localStorage.getItem("jwtToken")).role != permission){
+        logout();
     }
 }
 

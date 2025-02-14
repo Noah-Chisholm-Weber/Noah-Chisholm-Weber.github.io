@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="490cd8ff-ee44-4900-9a92-66e6699428eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/testServer-Database/indexScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/indexScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/addAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/addAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/addAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/addAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/adminRedirect.html" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/adminRedirect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testServer-Database/verifyJWT.js" beforeDir="false" afterPath="$PROJECT_DIR$/testServer-Database/verifyJWT.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

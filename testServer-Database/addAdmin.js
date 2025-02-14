@@ -3,6 +3,7 @@ document.getElementById("submit").addEventListener("click", async () => {
     let password = document.getElementById("passwordEntry").value;
     let passwordConfirmation = document.getElementById("passwordConfirmation").value;
     let role = document.getElementById("role").value;
+    console.log(role);
 
     if(username == "") alert("Missing Username!");
     else if(password == "") alert("Missing Password!");
@@ -16,13 +17,16 @@ document.getElementById("submit").addEventListener("click", async () => {
             },
             body: new URLSearchParams({ username: username, password: password, role: role, JWT: localStorage.getItem("jwtToken")})
         });
-        if(response.error == "-1"){
+        const result = await response.json();
+        console.log(result);
+        console.log(result.error)
+        if(result.error == "-1"){
             alert("Please Login");
             logout();
-        } else if(response.error == "0") {
+        } else if(result.error == "0") {
             alert("Success!");
         } else {
-            alert(response.error);
+            alert(result.error);
         }
     }
 });

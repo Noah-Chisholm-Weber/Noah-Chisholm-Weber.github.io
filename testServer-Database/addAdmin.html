@@ -5,7 +5,7 @@
   <title>Title</title>
   <script src="verifyJWT.js"></script>
 </head>
-	<body>
+	<body onload="verifyPermissions('ADMIN_L9')">
 		<label for="usernameEntry">New Username: </label>
         <input type="text" id="usernameEntry">
         <br>
@@ -16,7 +16,7 @@
         <input type="password" id="passwordConfirmation">
         <br>
         <label for="role">User Role: </label>
-        <select if="role">
+        <select id="role">
             <option value="">Select One</option>
             <option value="ADMIN_L0">ADMIN_L0</option>
             <option value="ADMIN_L1">ADMIN_L1</option>
