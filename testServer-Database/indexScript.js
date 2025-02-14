@@ -10,6 +10,11 @@ async function insertUser(username, password) {
     const result = await response.json();
     console.log(result); // Output API response
     document.getElementById("result").innerText = result.message || result.error;
+    login(username, password);
+}
+
+function getJWTJson(token) {
+    return JSON.parse(atob(token.split('.')[1]));
 }
 
 async function login(userName, passWord) {
@@ -22,8 +27,14 @@ async function login(userName, passWord) {
     });
     const result = await response.json();
     localStorage.setItem("jwtToken", result.JWT);
-    console.log(getJWTJson());
+
+    const role  = getJWTJson(result.JWT).role;
     document.getElementById("loginOut").innerText = result.message || result.error;
+    if(role == "ADMIN_L9") {
+        window.location.href = "adminRedirect.html";
+    } else {
+        window.location.href = "store.html";
+    }
 }
 
 // Example usage when clicking a button
