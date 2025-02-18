@@ -31,11 +31,35 @@
 		
 			// TODO: Define traverseGrid with callback function
 					
-			function reloadMap() {
-				// TODO: Implement reload map function as 2D array demo
-				
-				// TODO: Implement buildTable as callback at the end of reloadMap();
+			function reloadMap(callBack) {
+				for(let row = 0; row < rows; row++) {
+					mineMap[row] = [];
+					for(let col = 0; col < cols; col++) {
+						mineMap[row][col] = "-";
+					}
+				}
+			
+				let minesLeft = mines;
+				while(minesLeft > 0) {
+					while(true) {
+						let randRow = parseInt(Math.random() * 9);
+						let randCol = parseInt(Math.random() * 9);
+						if(mineMap[randRow][randCol] === "-") mineMap[randRow][randCol] = "M"; else continue;
+						break;
+					};
+					minesLeft--;
+				}
+
+				for(let row = 0; row < rows; row++) {
+					for(let col = 0; col < cols; col++) {
+						let touchCount = calculateValue(row, col);
+						if(mineMap[row][col] != "M") mineMap[row][col] = touchCount;
+					}
+				}
+				console.log(mineMap);
+				callBack();
 			}
+
 			
 			function process(event, row, col) {
 				let button = document.getElementById(row + "_" + col);
@@ -72,15 +96,13 @@
 			}
 			
 			function gameOver() {
-				// TODO: Traverse grid with anonymous callback function
-				for (let row = 0; row < rows; row++)
-					for (let col = 0; col < cols; col++) {
-						let button = document.getElementById(row + "_" + col);
+				traverseGrid(() => {
+					let button = document.getElementById(row + "_" + col);
 						if (mineMap[row][col] == 'M')
 							button.innerHTML = bomb;
 							
 						button.disabled = true;
-					}		
+				});	
 			}
 			
 			// TODO: Implement traverseAdjacent with callback
@@ -134,6 +156,14 @@
 
 				return touchCount;
 			}
+
+			function traverseGrid(callBack) {
+				for(let row = 0; row < rows; row++){
+					for(let col = 0; col < cols; col++) {
+						callBack(row, col);
+					}
+				}
+			}
 			
 			let buildTable = () => {
 				output = "<table>"
@@ -157,7 +187,7 @@
 			for (let i = 0; i < mineMap.length; i++)
 				console.log(mineMap[i]);
 				
-			reloadMap();			
+			reloadMap(buildTable);			
 		</script>	
 	</body>
 </html>
