@@ -1,9 +1,3 @@
-log = () => console.log(this);
-
-window.addEventListener("load", log);
-document.getElementById("btn1").addEventListener("click", log);
-
-
 function selectionSort(arr, callback) {
 	let n = arr.length;
 	
