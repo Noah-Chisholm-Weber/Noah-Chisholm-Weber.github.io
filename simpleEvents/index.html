@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Event Listener Demo</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border: 2px solid black;
+            text-align: center;
+        }
+		
+		#child {
+			background-color: green;
+			border: 2px solid black;
+			width: 50px;
+			height: 50px;
+		}
+    </style>
+</head>
+<body>
+
+    <h1>Event Listener Demo</h1>
+    <p>Interact with the box below:</p>
+    
+    <div id="box">
+		<div id='child'>
+		</div>	
+	</div>
+	
+	<br>
+	<p>Key events in a focusable field.</p>
+	<input id='field'>
+	
+	<br>
+	<p>Event handling for dynamically added elements.</p>
+	<button id="addButton">New Button</button>
+	
+	<br><br>
+	<div id="container"></div>
+
+    <script>
+        //event handler: a mechanism that sits around and waits for something to happen.
+        const box = document.getElementById("box");
+        //mouse events
+
+        box.addEventListener('click', () => {
+            console.log("button clicked");
+        });
+
+        box.addEventListener('dblclick', () => {
+            console.log("button double clicked");
+        });
+        
+        box.addEventListener('mousedown', () => {
+            console.log("mouse down clicked");
+        });
+        box.addEventListener('mouseup', () => {
+            console.log("mouse up clicked");
+        });
+
+        box.addEventListener('mouseenter', () => {
+            console.log("mouse entered");
+        });
+        box.addEventListener('mouseover', () => {
+            console.log("mouse over");
+        });
+
+        box.addEventListener('mouseleave', () => {
+            console.log("mouse left");
+        });
+        box.addEventListener('mouseout', () => {
+            console.log("mouse out");
+        });
+
+        box.addEventListener('mousemove', () => {
+            console.log("mouse moved");
+        });
+
+        const field = document.getElementById("field");
+
+        field.addEventListener("keypress", (event) => {
+            console.log("key: " + event.key);
+        });
+
+        const addButton = document.getElementById("addButton");
+        addButton.addEventListener("click", () => {
+            buttonToAdd = document.createElement("button");
+            buttonToAdd.textContent = "A new Button";
+            buttonToAdd.classList.add('newBtn');
+            document.getElementById("container").appendChild(buttonToAdd);
+        });
+
+        document.getElementById('container').addEventListener('click', (event) => {
+                if(event.target.classList.contains("newBtn"))
+                    alert("clicked");
+            });
+
+        // TODO: Add a variety of event handlers
+		
+    </script>
+
+</body>
+</html>

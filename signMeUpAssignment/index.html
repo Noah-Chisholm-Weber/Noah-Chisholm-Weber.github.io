@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sign Me Up</title>
+		<style>
+			/* TODO: Invalid style */
+		</style>
+	</head>
+	<body>
+		<h1>Sign Me Up</h1>
+		<!-- TODO: Investigate GET vs POST -->
+		<form id="signupForm" action="process.php" method="post">
+			<!-- TODO: Various HTML validation -->
+			<label for="email">Email:</label>
+			<input id="email" name="userEmail" type="email" autocomplete="email" placeholder="myname@gmail.com">
+			<br><br>
+
+			<label for="year">Year of Birth:</label>
+			<input id="year" name="userYear" placeholder="####" pattern="[0-9]{4}">
+			<br><br>
+
+			<label for="username">Username:</label>
+			<input id="username" name="userUsername" autocomplete="username" pattern="[a-zA-Z0-9_]{4,8}" title="lowcase only between 4 and 8 characters">
+			<br><br>
+			
+			<!-- TODO: Use real-time feedback with JS -->
+			<label for="password">Password:</label>
+			<input id="password" name="userPassword" type="password"> <br>
+			<p id="passwordMessage"></p>
+
+			<button type="submit">Sign Up</button>
+		</form>
+		
+		<script>	
+		// TODO: Custom validation on submit
+		const form = document.getElementById("signupForm");
+		form.addEventListener("submit", function(event) {
+			const passwordField = document.getElementById("password");
+			const usernameField = document.getElementById("username");
+
+			const password = passwordField.value;
+			const username = usernameField.value;
+
+			if(password.includes(username)){
+				event.preventDefault();
+				alert("password must not contain username");
+			}
+		});
+		// TODO: Real-time custom validation
+		</script>
+	</body>
+</html>

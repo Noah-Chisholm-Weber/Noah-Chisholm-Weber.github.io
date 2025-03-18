@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DOM Puzzle</title>
+
+        <style>
+            #puzzle {
+                width: 500px;
+                height: 500px;
+                border: 5px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id='puzzle'></div>
+        <script>
+            const header = document.createElement("h1");
+            header.innerHTML = "DOM Puzzle";
+            const puzzelDiv = document.getElementById("puzzle");
+            puzzelDiv.style.backgroundColor = "#7338A0";
+            puzzelDiv.addEventListener("mouseenter", event => {
+                event.target.style.border = "5px solid orange";
+            });
+
+            puzzelDiv.addEventListener("mouseleave", event => {
+                event.target.style.border = "5px solid black";
+            });
+
+            document.body.prepend(header);
+
+            const bigButtonsTable = document.createElement("table");
+            bigButtonsTable.style.height = "250px";
+            bigButtonsTable.style.width = "250px";
+            bigButtonsTable.style.borderCollapse = "collapse";
+            puzzelDiv.append(bigButtonsTable);
+
+            const tbtRowOne = document.createElement("tr");
+            bigButtonsTable.append(tbtRowOne);
+
+            const tbtRowTwo = document.createElement("tr");
+            bigButtonsTable.append(tbtRowTwo);
+
+            const bigButtonOne = document.createElement("button");
+            bigButtonOne.textContent = "A";
+            const styleOne = bigButtonOne.style;
+            styleOne.backgroundColor = "#9455F4";
+            styleOne.color = "white";
+            styleOne.width = "125px";
+            styleOne.height = "125px";
+            tbtRowOne.append(bigButtonOne);
+
+            const bigButtonTwo = document.createElement("button");
+            bigButtonTwo.textContent = "B";
+            const styleTwo = bigButtonTwo.style;
+            styleTwo.backgroundColor = "#4A2B74";
+            styleTwo.color = "white";
+            styleTwo.width = "125px";
+            styleTwo.height = "125px";
+            tbtRowOne.append(bigButtonTwo);
+            
+            const bigButtonThree = document.createElement("button");
+            bigButtonThree.textContent = "C";
+            const styleThree = bigButtonThree.style;
+            styleThree.backgroundColor = "#594492";
+            styleThree.color = "white";
+            styleThree.width = "125px";
+            styleThree.height = "125px";
+            tbtRowTwo.append(bigButtonThree);
+
+            const bigButtonFour = document.createElement("button");
+            bigButtonFour.textContent = "D";
+            const styleFour = bigButtonFour.style;
+            styleFour.backgroundColor = "#854DDC";
+            styleFour.color = "white";
+            styleFour.width = "125px";
+            styleFour.height = "125px";
+            tbtRowTwo.append(bigButtonFour);
+
+
+            const smallButtonsTable = document.createElement("table");
+            smallButtonsTable.style.width = "250px";
+            smallButtonsTable.style.height = "250px";
+            smallButtonsTable.style.borderCollapse = "collapse";
+            smallButtonsTable.style.float = "right";
+            puzzelDiv.append(smallButtonsTable);
+
+            for(let r = 0; r < 10; r++){
+                const curRow = document.createElement("tr");
+                smallButtonsTable.append(curRow);
+                for(let c = 0; c < 10; c++){
+                    const smallCell = document.createElement("td");
+                    curRow.append(smallCell);
+                    smallCell.style.padding = "0px";
+                    smallCell.style.margin = "0px";
+                    const curButton = document.createElement("button");
+                    smallCell.append(curButton);
+                    curButton.style.width = "100%";
+                    curButton.style.height = "100%";
+                    curButton.style.backgroundColor = "#C39CFF";
+                    curButton.addEventListener("click", event => {
+                        event.target.style.backgroundColor = "#4A2574";
+                        event.target.parentNode.nextElementSibling.firstChild.style.backgroundColor = "#FF9E00";
+                        event.target.parentNode.previousElementSibling.firstChild.style.backgroundColor = "#FF9E00";
+                    });
+                }
+            }
+
+            const bottomMessage = document.createElement("p");
+            bottomMessage.textContent = "This is a puzzle created entirly with JavaScript.";
+            document.body.append(bottomMessage);
+        </script>
+    </body>
+</html>

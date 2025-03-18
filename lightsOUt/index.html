@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out</title>
+    <style>	
+		td {
+			border: 1px solid black;
+			width: 50px;
+			height: 50px;
+		}
+
+		.lighted {
+			background-color: violet;
+		}
+    </style>
+</head>
+<body>
+	<h1>Lights Out (1995)</h1>
+	<div id='game'></div>
+
+    <script>		
+		function startup() {
+			nodes = document.createElement("table");
+			for(let r = 0; r < 5; r++){
+				curRow = document.createElement("tr");
+				nodes.append(curRow);
+				for(let c = 0; c < 5; c++){
+					newNode = document.createElement("td");
+					newNode.setAttribute("onClick", "changeLights(this)");
+					curRow.append(newNode);
+				}
+			}
+			document.getElementById("game").append(nodes);
+			// TODO: Creating elements with JS
+			
+			// TODO: Turn on shuffle
+			shuffle();
+		}
+
+		function changeLights(element) {		
+			// TODO: Traversing DOM
+			lights = []
+			
+			lights.push(element);
+			lights.push(element.previousElementSibling);
+			lights.push(element.nextElementSibling);
+			
+			let curRow = element.parentNode;
+			let position = Array.from(curRow.children).indexOf(element);
+			if(curRow.previousElementSibling)
+				lights.push(Array.from(curRow.previousElementSibling.children)[position]);
+			if(curRow.nextElementSibling)
+				lights.push(Array.from(curRow.nextElementSibling.children)[position]);
+
+			lights.forEach((item) => {
+				if(item !== null)
+				item.classList.toggle('lighted');
+			});
+			/*lights.forEach((item) => {
+				if(item.classList.contains('lighted')){
+					item.classList.remove('lighted');
+				}else{
+					item.classList.add('classList');
+				}
+			});*/
+			//element.classList.add('lighted');
+			if (checkWin())
+				alert('Winner');
+		}
+		
+		function shuffle() {
+			for (let i = 0; i < 10; i++) {
+				let row = Math.floor(Math.random() * 5);
+				let col = Math.floor(Math.random() * 5);
+				
+				let board = document.getElementById('game').firstElementChild;
+				
+				let randCell = board.children[row].children[col];
+				changeLights(randCell);				
+			}
+		}
+		
+		function checkWin() {
+			const board = document.getElementById('game');
+			const cells = board.querySelectorAll('td');			
+			return Array.from(cells).every(cell => !cell.classList.contains('lighted'));
+		}
+		
+		startup();
+	</script>
+</body>
+</html>
