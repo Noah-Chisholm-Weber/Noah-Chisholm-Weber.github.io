@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Demonstration</title>
+</head>
+<body>
+    <h2>Leave a Comment</h2>
+    <form onsubmit="displayComment(event)">
+        <input type="text" id="userInput" placeholder="Enter your comment">
+        <button type="submit">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    <div id="comments"></div>
+
+    <script>
+        function santize(str){
+                return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        
+        function displayComment(event) {
+            event.preventDefault();
+            let userInput = document.getElementById("userInput").value;
+            let commentDiv = document.getElementById("comments");
+
+            let newComment = document.createElement("p");
+            newComment.textContent = santize(userInput);
+            commentDiv.appendChild(newComment);
+        }		
+
+    </script>
+</body>
+</html>
+<!-- 
+INJECT THIS: 
+// No visible change, but can observe the script making its way into the "db"
+<script>alert('Hacked!');</script>
+
+// Alert 'Hacked!'
+<img src=x onerror="alert('Hacked!')">
+
+// Change the page color to black.
+<img src=x onerror="document.getElementsByTagName('body')[0].style.backgroundColor='black'">
+-->

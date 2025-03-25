@@ -6,6 +6,9 @@
 		<title>Sign Me Up</title>
 		<style>
 			/* TODO: Invalid style */
+			input:invalid {
+				border: 2px solid red;
+			}
 		</style>
 	</head>
 	<body>
@@ -48,7 +51,30 @@
 				alert("password must not contain username");
 			}
 		});
-		// TODO: Real-time custom validation
+		document.getElementById("password").addEventListener("input", function () {
+			let output = "<strong>";
+			if(this.value.includes(document.getElementById("username").value)){
+				output += "Password cannot contain username.<br>";
+			}
+			if(this.value.length < 8){
+				output += "Password cannot be less than eight characters!<br>";
+			}
+			if(!(/[a-z]/.test(this.value))){
+				output += "Password must contain a lowercase letter!<br>";
+			}
+			if(!(/[A-Z]/.test(this.value))){
+				output += "Password must contain a uppercase letter!<br>";
+			}
+			if(!(/[0-9]{3}/.test(this.value))){
+				output += "Password must contain at least 3 numeric values!<br>";
+			}
+			if(!(/[!@#$%^&*()_+-]/.test(this.value))){
+				output += "Password must contain at least one of the following, !, @, #, $, %, ^, &, *, (, ), _, -<br>";
+			}
+			output += "</strong>"
+			document.getElementById("passwordMessage").innerHTML = output;
+		});
+					// TODO: Real-time custom validation
 		</script>
 	</body>
 </html>

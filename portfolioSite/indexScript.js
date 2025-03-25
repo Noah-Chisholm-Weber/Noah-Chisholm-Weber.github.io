@@ -1,9 +1,11 @@
 function setLightMode() {
     document.getElementById("styleSheetLink").href = "lightModeStyle.css";
+    localStorage.setItem("style", "lightModeStyle.css");
 }
 
 function setDarkMode() {
     document.getElementById("styleSheetLink").href = "darkModeStyle.css";
+    localStorage.setItem("style", "darkModeStyle.css");
 }
 
 function updateFontText(){

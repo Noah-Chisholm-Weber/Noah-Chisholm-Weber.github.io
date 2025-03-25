@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="styleSheetLink" rel="stylesheet" href="darkModeStyle.css">
+    <link id="additionalStyleing" rel="stylesheet" href="commentSubmission.css">
+    <script src="indexScript.js"></script>
+</head>
+
+<body id="body">
+    <p id="errorAlert">This is always at the top!</p>
+    <div id="formContainer">
+        <form id="inputForm">
+            <div id="inputRow">
+                <label for="name" class="inputRowObject">Name: </label>
+                <input id="name" name="name" type="text" class="inputRowObject" pattern="[a-zA-Z ]{1,255}" required title="Only letter values or a space character maximum length of 20.">
+                
+                <label for="phone" class="inputRowObject">Phone Number: </label>
+                <input id="phone" name="phone" type="tel" class="inputRowObject" pattern="^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$" title="Please use the format (xxx) xxx-xxxx, white space will not be accepted.">
+                
+                <label for="email" class="inputRowObject">Email: </label>
+                <input id="email" name="email" class="inputRowObject" type="email">
+            </div>
+            <textarea id="comment" name="comment" placeholder="Type comment or concern here."></textarea>
+            <p>Please create an account to continue.</p>
+            <label for="username" class="accountInput">Username: </label>
+            <input id="username" name="username" class="accountInput">
+            <label for="password" class="accountInput">Password: </label>
+            <input id="password" name="password" class="accountInput" type="password">
+            <br>
+            <label for="submit" class="accountInput">Sign up and post your comment or concern: </label>
+            <input id="submit" name="submit" class="accountInput" type="submit">
+        </form>
+    </div>
+    <script src="commentValidationScript.js"></script>
+</body>
+
+</html>
