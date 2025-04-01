@@ -1,0 +1,37 @@
+<div>
+    <script>
+        function setLightMode() {
+            parent.document.getElementById("styleSheetLink").href = "lightModeStyle.css";
+            localStorage.setItem("style", "lightModeStyle.css");
+        }
+
+        function setDarkMode() {
+            parent.document.getElementById("styleSheetLink").href = "darkModeStyle.css";
+            localStorage.setItem("style", "darkModeStyle.css");
+        }
+
+        function updateFontText(){
+            sliderValue = document.getElementById("fontSlider").value;
+            parent.document.getElementById("fontOut").innerHTML = sliderValue;
+            parent.document.getElementById("fontExample").style = "font-size:" + sliderValue + "px;";
+        }
+
+        function adjustFont() {
+            sliderValue = document.getElementById("fontSlider").value;
+            parent.document.getElementById("body").style = "font-size:" + sliderValue + "px;";
+        }
+    </script>
+    <h3>Settings</h3>
+    <form>
+        <label for="lightModeButton">Light Mode</label>
+        <input name="styleButtons" type="radio" id="lightModeButton" onclick="setLightMode()">
+
+        <label for="darkModeButton">Dark Mode</label>
+        <input name="styleButtons" type="radio" id="darkModeButton" onclick="setDarkMode()" checked>
+
+        <label for="fontSlider">Font Size: </label>
+        <label id="fontOut">12</label>
+        <input name="fontSlider" type="range" id="fontSlider" onChange="adjustFont()" oninput="updateFontText()" value="12" min="12" max="96">
+        <label id="fontExample">Sample Text.</label>
+    </form>
+</div>
