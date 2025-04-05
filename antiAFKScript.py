@@ -15,7 +15,7 @@ while(True):
     # Release the "a" key
     keyboard.release('a')
 
-    # Hold down the "a" key
+    # Hold down the "a" keys
     keyboard.press('s')
 
     # Keep it held for 1 second

@@ -48,10 +48,13 @@ console.log("Jacod was attacked! New hp: " + character3.hp);
 // Classes are blueprints for objects in our programs, groups properties(attributes) and behaviors(methods)
 // Allow proper ecapsulation and abstraction
 
+//static vars and methods = shared amongst all instances
+
 class character {
     // Attribs
     #hp;
     #class;
+    static count = 0;
     //constructor
     constructor(nameIn, hpIn = 10, strengthIn = 10){
         this.name = nameIn;
@@ -60,6 +63,7 @@ class character {
         this.defense = 10;
         this.itemInv = [];
         this.gold = 0;
+        character.count++;
     }
 
     // Methods
@@ -102,6 +106,11 @@ class character {
         target.modifyHealth(amount);
         console.log("This leaves " + target + " at " + target.hp + " hp.");
     }
+
+    static generateName() {
+        const names = ['rand1', 'rand2', 'rand3', 'rand4', 'rand5'];
+        return names[Math.floor(Math.random() * names.length)];
+    }
 };
 
 character4 = new character("NameFour", 8902, 9803);
@@ -141,3 +150,10 @@ console.log(character5.hp);
 character4.attack(character5, 10)
 
 console.log(character5.hp);
+
+console.log(character.count);
+
+let character6 = new character(character.generateName());
+
+console.log(character6.name);
+console.log(character.count);
