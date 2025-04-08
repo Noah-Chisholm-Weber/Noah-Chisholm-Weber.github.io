@@ -7,7 +7,7 @@ class card {
         // These should be private, to fix later
         this.suit = suit;       // 0 = spades, 1 = hearts, 2 = diamonds, 3 = diamonds
         this.value = value > 11 ? value + 1 : value;
-        this.icon = 127137+ (suit * 16); + this.value;
+        this.icon = 127137 + (suit * 16) + this.value;
         this.color = (suit === 0 || suit === 3) ? 'black' : 'red';
         //private "helper" method
         this.#cardId = card.idGen++;
@@ -22,7 +22,51 @@ class card {
         this.#cardElement.setAttribute('data-value', this.value);
         this.#cardElement.setAttribute('data-suit', this.suit);
         this.#cardElement.setAttribute('draggable', true);
+
+        this.#cardElement.style.cursor = 'pointer';
         //this.#cardElement.setAttribute();
+
+        this.#cardElement.addEventListener('dragstart', this.#dragStart.bind(this));
+        this.#cardElement.addEventListener('dragstart', this.#dragOver);
+        this.#cardElement.addEventListener('drop', this.#dropCard);
+    }
+
+    #dragStart(event) {
+        const cardValues = {
+            id: this.#cardId,
+            suit: this.suit,
+            value: this.value
+        };
+
+        console.log(cardValues);
+        const curCard = JSON.stringify(cardValues);
+        event.dataTransfer.setData('application/json', curCard);
+    }
+
+    #dragOver(event) {
+        event.preventDefault();
+    }
+
+    #dropCard(event) { 
+        const data = event.dataTransfer.getData('application/json');
+        const cardValues = JSON.parse(data);
+
+        const targetValue = {
+            id: event.target.getAttribute('id'),
+            suit: event.target.getAttribute('data-suit'),
+            value: event.target.getAttribute('data-value')
+        };
+
+        if(dragCard.suit != targetValue.suit || cardValues.value != targetValue.value)
+            return;     
+        const cardTable = document.getElementsById('cardTable');
+        const cards = Array.from(cardTable.children);
+        const dragIndex = cards.findIndex(card => card.id == cardValues.id);
+        const dropIndex = cards.findIndex(card => card.id === targetValue.id);
+        const dif = dragIndex - dropIndex;
+        if(dropIndex !== dragIndex - 1 || dropIndex !== dragIndex - 3)
+            return;
+        event.target.replaceWith(document.getElementById(cardValues.id));
     }
     
     get cardElement() {

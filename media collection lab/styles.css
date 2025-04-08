@@ -1,0 +1,23 @@
+select {
+    border: solid 1px black; /* Border color and width */
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer; /* Indicates it's still interactive */
+}
+
+select:hover, select:focus {
+    outline: none; /* Removes the focus outline */
+}
+
+footer {
+    position: fixed; /* Fixes the footer to the viewport */
+    bottom: 0; /* Positions it at the bottom of the viewport */
+    left: 0; /* Aligns it to the left edge */
+    width: 100%; /* Ensures it spans the full width of the viewport */
+    background-color: #f8f8f8; /* Optional: Background color for the footer */
+    text-align: center; /* Optional: Center-align the text */
+    padding: 10px 0; /* Optional: Add some padding */
+    border-top: 1px solid #ccc; /* Optional: Add a top border for separation */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
